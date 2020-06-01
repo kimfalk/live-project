@@ -1,9 +1,8 @@
 # The MovieGEEK Installation Guide
 
-The MovieGEEK is a website implemented to accompany my book, Practical Recommender Systems. 
-It is used in the book to show how recommender systems work and how you can implement them. 
-The book describes how the algorithms work and provides more detail into how the site works.
-
+The MovieGEEK is a website originally implemented to accompany my book, Practical Recommender Systems. 
+However this folder is used for the manning LiveProject, which will go live soon. 
+ 
 The website is not intended as a standalone tutorial or a plug-and-play website for you to install 
 and use for your own content. 
 
@@ -13,6 +12,22 @@ dataset and the poster images provided by the [themoviedb.org](https://www.themo
 I wish to extend a big thanks to both of them for all their work.
 
 ## Project Setup
+
+As a new addition to this site, this repo will also have a docker container, which should make it 
+easier to start. 
+
+Fire up the website simply by first building the docker container
+
+```shell script
+docker-compuse build web
+```
+
+And then start it executing the following:
+
+```shell script
+docker-compose up web
+```
+
 
 ### Install Python 3.x
  
