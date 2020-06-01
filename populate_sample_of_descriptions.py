@@ -4,13 +4,15 @@ import django
 import json
 import requests
 import time
+import argparse
+from tqdm import tqdm
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'prs_project.settings')
 
 django.setup()
 
 from recommender.models import MovieDescriptions
-NUMBER_OF_PAGES = 15760
+
 start_date = "1970-01-01"
 
 
@@ -41,26 +43,34 @@ def get_descriptions():
         print("{}: {}".format(page, r.json()))
 
 
-def save_as_csv():
-    url = """https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2016-01-01
-    &primary_release_date.lte=2016-10-22&api_key={}&page={}"""
+def save_as_json(max_pages):
+    url = """https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=2016-01-01&api_key={}&page={}"""
     api_key = get_api_key()
 
     file = open('data.json','w')
 
     films = []
-    for page in range(1, NUMBER_OF_PAGES):
-        r = requests.get(url.format(api_key, page))
-        for film in r.json()['results']:
-            f = dict()
 
-            f['id'] = film['id']
-            f['imdb_id'] = get_imdb_id(f['id'])
-            f['title'] = film['title']
-            f['description'] = film['overview']
-            f['genres'] = film['genre_ids']
-            films.append(f)
-        print("{}: {}".format(page, r.json()))
+    r = requests.get(url.format(api_key, 1))
+    r_json = r.json()
+    print(url.format(api_key, 1))
+    print(f"Total results: {r_json['total_results']}, total pages: {r_json['total_pages']} taking {max_pages}")
+
+    for page in tqdm(range(2, max_pages)):
+
+        for film in r.json()['results']:
+            if not film['adult']:
+                f = dict()
+
+                f['id'] = film['id']
+                f['imdb_id'] = get_imdb_id(f['id'])
+                f['title'] = film['title']
+                f['description'] = film['overview']
+                f['genres'] = film['genre_ids']
+                films.append(f)
+        #print("{}: {}".format(page, r.json()))
+
+        r = requests.get(url.format(api_key, page))
 
     json.dump(films, file, sort_keys=True, indent=4)
 
@@ -73,12 +83,12 @@ def get_imdb_id(moviedb_id):
     r = requests.get(url.format(moviedb_id, get_api_key()))
 
     json = r.json()
-    print(json)
+
     if 'imdb_id' not in json:
         return ''
     imdb_id = json['imdb_id']
     if imdb_id is not None:
-        print(imdb_id)
+        #print(imdb_id)
         return imdb_id[2:]
     else:
         return ''
@@ -108,7 +118,15 @@ def get_popular_films_for_genre(genre_str):
 
 
 if __name__ == '__main__':
+    NUMBER_OF_PAGES = 0
+    parser = argparse.ArgumentParser(description="download movie descriptions from themoviedb.org")
+    parser.add_argument('--pages', dest="NUMBER_OF_PAGES", type=int,
+                        default=15760)
+    args = parser.parse_args()
+
+    NUMBER_OF_PAGES = args.NUMBER_OF_PAGES
+
     print("Starting MovieGeeks Population script...")
-    get_descriptions()
+    # get_descriptions()
     # get_popular_films_for_genre('comedy')
-    # save_as_csv()
+    save_as_json(NUMBER_OF_PAGES)

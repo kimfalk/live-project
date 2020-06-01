@@ -15,6 +15,20 @@ class ContentBasedRecs(base_recommender):
 
         self.min_sim = min_sim
         self.max_candidates = 100
+        self.recs = self.load_recs()
+
+
+    def load_recs(self):
+        recs = {}
+        csv_file = "cb_recs.csv"
+        with open(csv_file, 'r') as f:
+            lines = f.readlines()
+
+        for line in lines:
+            source, targets = line.split('::')
+            sims = [similarity.split(':') for similarity in targets.split(',')]
+            recs[source] = sims
+        return recs
 
     def recommend_items(self, user_id, num=6):
 
@@ -22,11 +36,19 @@ class ContentBasedRecs(base_recommender):
 
         return self.recommend_items_by_ratings(user_id, active_user_items.values(), num)
 
-    @staticmethod
-    def seeded_rec(content_ids, take=6):
-        data = LdaSimilarity.objects.filter(source__in=content_ids) \
-                   .order_by('-similarity') \
-                   .values('target', 'similarity')[:take]
+
+    def seeded_rec(self, content_ids, take=6):
+        print(content_ids, len(self.recs))
+        if len(self.recs) > 0:
+            recs = []
+            for content_id in content_ids:
+                recs += self.recs.get(content_id, [])
+            print(recs)
+            data = [{"target": rec[0], "sim": rec[1]} for rec in recs[:take]]
+        else:
+            data = LdaSimilarity.objects.filter(source__in=content_ids) \
+                       .order_by('-similarity') \
+                       .values('target', 'similarity')[:take]
         return list(data)
 
     def recommend_items_by_ratings(self,
