@@ -73,6 +73,7 @@ def genre(request, genre_id):
 
     print(genres)
     context_dict = {'movies': page,
+                    'genre_id': genre_id,
                     'genres': genres,
                     'api_key': get_api_key(),
                     'session_id': session_id(request),

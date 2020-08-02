@@ -15,6 +15,7 @@ from recs.content_based_recommender import ContentBasedRecs
 from recs.funksvd_recommender import FunkSVDRecs
 from recs.fwls_recommender import FeatureWeightedLinearStacking
 from recs.neighborhood_based_recommender import NeighborhoodBasedRecs
+from recs.non_negative_mf_recommender import NonNegativeMFRecs
 from recs.popularity_recommender import PopularityBasedRecs
 
 
@@ -46,8 +47,20 @@ def recs_using_association_rules(request, user_id, take=6):
     print("recs from association rules: \n{}".format(recs[:take]))
     return JsonResponse(dict(data=list(recs[:take])))
 
+def chart_genre(request, take=10):
+    genre = request.GET.get('genre', "top")
+    sorted_items = PopularityBasedRecs().genre_chart(genre)
+
+    data = {
+        'data': [{"movie_id": str(v[0]), "title": str(v[1])} for v in sorted_items.values]
+    }
+
+    return JsonResponse(data, safe=False)
+
 
 def chart(request, take=10):
+    return chart_genre(request, take=10)
+
     sorted_items = PopularityBasedRecs().recommend_items_from_log(take)
     ids = [i['content_id'] for i in sorted_items]
 
@@ -63,7 +76,6 @@ def chart(request, take=10):
     data = {
         'data': sorted_items
     }
-
     return JsonResponse(data, safe=False)
 
 
@@ -179,6 +191,17 @@ def recs_fwls(request, user_id, num=6):
     }
     return JsonResponse(data, safe=False)
 
+
+def recs_nnmf(request, user_id, num=6):
+    sorted_items = NonNegativeMFRecs().recommend_items(user_id, num)
+
+    data = {
+        'user_id': user_id,
+        'data': sorted_items
+    }
+    return JsonResponse(data, safe=False)
+
+
 def recs_funksvd(request, user_id, num=6):
     sorted_items = FunkSVDRecs().recommend_items(user_id, num)
 
@@ -188,6 +211,7 @@ def recs_funksvd(request, user_id, num=6):
     }
     return JsonResponse(data, safe=False)
 
+
 def recs_bpr(request, user_id, num=6):
     sorted_items = BPRRecs().recommend_items(user_id, num)
 
@@ -196,6 +220,7 @@ def recs_bpr(request, user_id, num=6):
         'data': sorted_items
     }
     return JsonResponse(data, safe=False)
+
 
 def recs_cf(request, user_id, num=6):
     min_sim = request.GET.get('min_sim', 0.1)
@@ -208,6 +233,7 @@ def recs_cf(request, user_id, num=6):
     }
 
     return JsonResponse(data, safe=False)
+
 
 def recs_pop(request, user_id, num=60):
     top_num = PopularityBasedRecs().recommend_items(user_id, num)

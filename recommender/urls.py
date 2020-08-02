@@ -22,6 +22,8 @@ urlpatterns = [
         views.recs_funksvd, name='recs_funksvd'),
     url(r'^fwls/user/(?P<user_id>\w+)/$',
         views.recs_fwls, name='recs_fwls'),
+    url(r'^nnmf/user/(?P<user_id>\w+)/$',
+        views.recs_nnmf, name='recs_nnmf'),
     url(r'^bpr/user/(?P<user_id>\w+)/$',
         views.recs_bpr, name='recs_fwls'),
     url(r'^pop/user/(?P<user_id>\w+)/$',

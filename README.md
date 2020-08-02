@@ -22,12 +22,19 @@ Fire up the website simply by first building the docker container
 docker-compuse build web
 ```
 
+NB: 
+
 And then start it executing the following:
 
 ```shell script
-docker-compose up web
+docker-compose start web
 ```
 
+(to close it again run
+```shell script
+docker-compose stop web
+```
+)
 
 ### Install Python 3.x
  

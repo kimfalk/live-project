@@ -377,6 +377,14 @@
   <h2>Personalised recommendations</h2>
     <div class="row well">
         <div class="col-sm-1">
+          Non negative matrix factorization:
+        </div>
+        <div class="col-sm-11">
+          <div id="nnmf_recs"></div>
+        </div>
+    </div>
+    <div class="row well">
+        <div class="col-sm-1">
           Association rules:
         </div>
         <div class="col-sm-11">
@@ -463,6 +471,7 @@
         get_recs('fwls', {{user_id}})
         get_recs('bpr', {{user_id}})
         get_recs('funk', {{user_id}})
+        get_recs('nnmf', {{user_id}})
     </script>
 </body>
 </html>

@@ -159,7 +159,7 @@
 
       function getTopContent() {
 
-          $.getJSON('/rec/chart', function(result) {
+          $.getJSON('/rec/chart?genre={{genre_id}}', function(result) {
             var ul = document.getElementById("top_content");
 
             result.data.forEach(function(element, index, array) {
