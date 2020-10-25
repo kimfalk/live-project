@@ -10,7 +10,7 @@ from recs.base_recommender import base_recommender
 
 
 class BPRRecs(base_recommender):
-    def __init__(self, save_path='./models/bpr/'):
+    def __init__(self, save_path='./models/bpr/model/'):
         self.save_path = save_path
         self.model_loaded = False
         self.avg = list(Rating.objects.all().aggregate(Avg('rating')).values())[0]

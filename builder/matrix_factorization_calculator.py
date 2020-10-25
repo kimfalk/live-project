@@ -15,7 +15,6 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "prs_project.settings")
 
 import django
 
-
 django.setup()
 
 from analytics.models import Rating

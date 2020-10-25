@@ -322,7 +322,7 @@ def evaluate_fwls_recommender():
 
 def evaluate_funksvd_recommender():
     save_path = './models/funkSVD/'
-    K = 20
+    K = 10
     timestr = time.strftime("%Y%m%d-%H%M%S")
     file_name = '{}-funksvd-k.csv'.format(timestr)
 
@@ -333,14 +333,14 @@ def evaluate_funksvd_recommender():
 
         for k in np.arange(0, 20, 2):
 
-            recommender = FunkSVDRecs(save_path + 'model/')
+            recommender = FunkSVDRecs(save_path + "model/")
 
             er = EvaluationRunner(0,
                                   builder,
                                   recommender,
                                   k,
                                   params={'k': 20,
-                                          'save_path': save_path + 'model/'})
+                                          'save_path': save_path})
 
             result = er.calculate(20, 10)
             builder = None

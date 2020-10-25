@@ -19,7 +19,7 @@ easier to start.
 Fire up the website simply by first building the docker container
 
 ```shell script
-docker-compuse build web
+docker-compose build web
 ```
 
 NB: 

@@ -1,5 +1,4 @@
 import collections
-import decimal
 import json
 import pickle
 from decimal import Decimal
@@ -14,7 +13,7 @@ from recs.base_recommender import base_recommender
 
 class FunkSVDRecs(base_recommender):
 
-    def __init__(self, save_path='./models/funkSVD/2018-01-01 10:01:34.179393/model/'):
+    def __init__(self, save_path='./models/funkSVD/model/'):
         self.save_path = save_path
         self.model_loaded = False
         self.avg = Decimal(list(Rating.objects.all().aggregate(Avg('rating')).values())[0])
@@ -34,14 +33,15 @@ class FunkSVDRecs(base_recommender):
     def set_save_path(self, save_path):
         self.save_path = save_path
 
-        self.load_model(save_path)
+        self.load_model(save_path + 'model/')
 
     def predict_score(self, user_id, item_id):
 
         if not self.model_loaded:
             self.load_model(self.save_path)
 
-        rec = Recs.objects.filter(user_id = user_id, item_id=item_id).first()
+        rec = Recs.objects.filter(user_id=user_id, item_id=item_id).first()
+
         if rec is None:
             return 0
         else:
