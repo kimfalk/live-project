@@ -19,7 +19,18 @@ services:
       - "8010:8010"
     depends_on:
       - db
-      
+
+  build-recs:
+    build: .
+    command: python -m builder.bpr_calculator
+  evaluate:
+    restart: always
+    build: .
+    command: python -m evaluator.evaluation_runner -ltr
+    volumes:
+      - .:/code
+    depends_on:
+      - db
   notebook:
     build: .
     command: jupyter notebook
