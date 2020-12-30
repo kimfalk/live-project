@@ -1,4 +1,5 @@
 from decimal import Decimal
+from os import path
 
 from django.db.models import Q
 
@@ -17,10 +18,14 @@ class ContentBasedRecs(base_recommender):
         self.max_candidates = 100
         self.recs = self.load_recs()
 
-
     def load_recs(self):
+
         recs = {}
         csv_file = "cb_recs.csv"
+
+        if not path.exists(csv_file):
+            return recs
+
         with open(csv_file, 'r') as f:
             lines = f.readlines()
 

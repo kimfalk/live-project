@@ -14,6 +14,7 @@ from recs.bpr_recommender import BPRRecs
 from recs.content_based_recommender import ContentBasedRecs
 from recs.funksvd_recommender import FunkSVDRecs
 from recs.fwls_recommender import FeatureWeightedLinearStacking
+from recs.live_project_popularity_recommender import LiveProjectPopularityBasedRecs
 from recs.neighborhood_based_recommender import NeighborhoodBasedRecs
 from recs.non_negative_mf_recommender import NonNegativeMFRecs
 from recs.popularity_recommender import PopularityBasedRecs
@@ -49,11 +50,14 @@ def recs_using_association_rules(request, user_id, take=6):
 
 def chart_genre(request, take=10):
     genre = request.GET.get('genre', "top")
-    sorted_items = PopularityBasedRecs().genre_chart(genre)
+    sorted_items = LiveProjectPopularityBasedRecs().genre_chart(genre)
 
-    data = {
-        'data': [{"movie_id": str(v[0]), "title": str(v[1])} for v in sorted_items.values]
-    }
+    data = {}
+
+    if len(sorted_items) > 0:
+        data = {
+            'data': [{"movie_id": str(v[0]), "title": str(v[1])} for v in sorted_items.values]
+        }
 
     return JsonResponse(data, safe=False)
 

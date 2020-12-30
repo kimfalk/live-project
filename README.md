@@ -27,14 +27,10 @@ NB:
 And then start it executing the following:
 
 ```shell script
-docker-compose start web
+docker-compose up web
 ```
 
-(to close it again run
-```shell script
-docker-compose stop web
-```
-)
+(to close it again run by stopping the process)
 
 ### Install Python 3.x
  

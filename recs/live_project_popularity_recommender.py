@@ -14,6 +14,8 @@ class LiveProjectPopularityBasedRecs:
                 name, ext = file.split('.')
                 if ext == "csv" and len(name) > 0:
                     self.charts[name] = pd.read_csv("{}/{}".format(charts_folder, file), index_col=0)
+        else:
+            print("Genre Global and Charts not implemented!")
 
     def genre_chart(self, genre):
         if genre in self.charts:
