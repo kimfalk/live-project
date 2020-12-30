@@ -7,8 +7,6 @@ RUN pip install -r requirements.txt
 
 COPY . /code/
 
-COPY cb_recs.csv /code/
-
 CMD ["python", "manage.py makemigrations --noinput"]
 CMD ["python", "manage.py migrate --run-syncdb"]
 
