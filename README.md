@@ -1,7 +1,7 @@
 # The MovieGEEK Installation Guide
 
 The MovieGEEK is a website originally implemented to accompany my book, Practical Recommender Systems. 
-However this folder is used for the manning LiveProject, which will go live soon. 
+However this folder is used for the manning LiveProject, which is currently in MEAP. 
  
 The website is not intended as a standalone tutorial or a plug-and-play website for you to install 
 and use for your own content. 
@@ -12,6 +12,31 @@ dataset and the poster images provided by the [themoviedb.org](https://www.themo
 I wish to extend a big thanks to both of them for all their work.
 
 ## Project Setup
+In the following we will go through the steps to set up this site. 
+
+Which of the two to choose I will leave up to you. But you need a themoviedb.org ID to use
+have pictures on the website. This will be described in the following section. 
+
+You will have two options, 
+ * use Docker container 
+ * run it in a local virtual environment. 
+ 
+###  Create an ID for themoviedb.org
+
+You have to create an ID with themoviedb.org to use its pictures.
+
+* Go to [https://www.themoviedb.org/account/signup](https://www.themoviedb.org/account/signup) 
+* Sign up
+* Login, go to your account settings and [create an API](https://www.themoviedb.org/settings/api). You can access 
+settings by clicking the avatar in the upper right-hand corner (the default is a blue circle with a white logo in it). 
+Then you’ll see settings on the left. 
+* Create a file in the moviegeek directory called ".prs" 
+* Open .prs and add { "themoviedb_apikey": <INSERT YOUR APIKEY HERE>}
+Remember to remove the "<" and ">" When you are finished, the file contents should look something like 
+{"themoviedb_apikey": "6d88c9a24b1bc9a60b374d3fe2cd92ac"}
+
+
+### Run site in a Docker container 
 
 As a new addition to this site, this repo will also have a docker container, which should make it 
 easier to start. 
@@ -28,7 +53,12 @@ And then start it executing the following:
 docker-compose up web
 ```
 
+NB: If you start and you get an error about an ```.prs``` file missing, its because you skipped 
+the section about creating a themoviedb.org id. [link](#create-an-id-for-themoviedborg)
+ 
 (to close it again by stopping the process (Cltr+C))
+
+### Run site in a virtualenv. 
 
 ### Install Python 3.x
  
@@ -190,20 +220,6 @@ Everyone, run these commands to populate the databases.
 ```
 WARNING: This might take some time.
 
-###  Create an ID for themoviedb.org
-
-You have to create an ID with themoviedb.org to use its pictures.
-
-* Go to [https://www.themoviedb.org/account/signup](https://www.themoviedb.org/account/signup) 
-* Sign up
-* Login, go to your account settings and [create an API](https://www.themoviedb.org/settings/api). You can access 
-settings by clicking the avatar in the upper right-hand corner (the default is a blue circle with a white logo in it). 
-Then you’ll see settings on the left. 
-* Create a file in the moviegeek directory called ".prs" 
-* Open .prs and add { "themoviedb_apikey": <INSERT YOUR APIKEY HERE>}
-Remember to remove the "<" and ">" When you are finished, the file contents should look something like 
-{"themoviedb_apikey": "6d88c9a24b1bc9a60b374d3fe2cd92ac"}
-
 ### Start the web server
 To start the development server, run this command:
 ```bash
@@ -212,6 +228,9 @@ To start the development server, run this command:
 Running the server like this will make the website available [http://127.0.0.1:8000](http://127.0.0.1:8000) 
 
 WARNING: Other applications also use this port so you might need to try out 8001 instead.
+
+NB: If you start and you get an error about an ```.prs``` file missing, its because you skipped 
+the section about creating a themoviedb.org id. [link](#create-an-id-for-themoviedborg)
 
 ## Closing down
 When you are finished running the project you can close it down doing the following steps, or simply close the 
