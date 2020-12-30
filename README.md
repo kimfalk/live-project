@@ -22,8 +22,6 @@ Fire up the website simply by first building the docker container
 docker-compose build web
 ```
 
-NB: 
-
 And then start it executing the following:
 
 ```shell script
