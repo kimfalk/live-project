@@ -53,7 +53,7 @@ And then start it executing the following:
 docker-compose up web
 ```
 
-NB: If you start and you get an error about an ```.prs``` file missing, its because you skipped 
+NB: If the website responds with an error about a ```.prs``` file missing, its because you skipped 
 the section about creating a themoviedb.org id. [link](#create-an-id-for-themoviedborg)
  
 (to close it again by stopping the process (Cltr+C))
@@ -229,7 +229,7 @@ Running the server like this will make the website available [http://127.0.0.1:8
 
 WARNING: Other applications also use this port so you might need to try out 8001 instead.
 
-NB: If you start and you get an error about an ```.prs``` file missing, its because you skipped 
+NB: If the website responds with an error about a ```.prs``` file missing, its because you skipped 
 the section about creating a themoviedb.org id. [link](#create-an-id-for-themoviedborg)
 
 ## Closing down
