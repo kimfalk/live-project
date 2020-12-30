@@ -30,7 +30,7 @@ And then start it executing the following:
 docker-compose up web
 ```
 
-(to close it again run by stopping the process)
+(to close it again by stopping the process (Cltr+C))
 
 ### Install Python 3.x
  
