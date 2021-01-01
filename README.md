@@ -14,12 +14,29 @@ I wish to extend a big thanks to both of them for all their work.
 ## Project Setup
 In the following we will go through the steps to set up this site. 
 
-Which of the two to choose I will leave up to you. But you need a themoviedb.org ID to use
-have pictures on the website. This will be described in the following section. 
+Which of the two to choose I will leave up to you. But first you need to download the 
+source code and create a themoviedb.org ID to use have pictures on the website. 
+This will be described in the following sections. 
 
 You will have two options, 
- * use Docker container 
- * run it in a local virtual environment. 
+ * [use Docker container](#run-site-in-a-docker-container) 
+ * [run it in a local virtual environment](#run-site-in-a-virtualenv). 
+
+
+## Download source code
+You have two choices for downloading the source code – downloading a zip file of the source code or using Git. 
+
+* *Downloading a zip file*
+ 
+   From the main [MovieGEEK directory on GitHub](https://github.com/practical-recommender-systems/moviegeek), 
+   click the green “Clone or download” button and choose to download a zip file to your computer.
+   
+* *Using Git*
+
+   Clone this repository or create a fork in your GitHub, and then clone that instead. The following command 
+   will create a copy on your computer.
+   `> git clone https://github.com/kimfalk/live-project.git`
+
  
 ###  Create an ID for themoviedb.org
 
@@ -34,6 +51,13 @@ Then you’ll see settings on the left.
 * Open .prs and add { "themoviedb_apikey": <INSERT YOUR APIKEY HERE>}
 Remember to remove the "<" and ">" When you are finished, the file contents should look something like 
 {"themoviedb_apikey": "6d88c9a24b1bc9a60b374d3fe2cd92ac"}
+
+
+## Running the site 
+
+There are two options as to how you run the site, 
+ * [use Docker container](#run-site-in-a-docker-container) 
+ * [run it in a local virtual environment](#run-site-in-a-virtualenv). 
 
 
 ### Run site in a Docker container 
@@ -74,20 +98,6 @@ Windows users, because installing Python and its packages can be tricky for you,
 [Anaconda](https://www.anaconda.com/distribution/) package for the simplest install. 
 If you want to, you can use the Windows instructions in the Hitchhiker’s Guide, 
 but I have always used the Anaconda package.
-
-## Download source code
-You have two choices for downloading the source code – downloading a zip file of the source code or using Git. 
-
-* *Downloading a zip file*
- 
-   From the main [MovieGEEK directory on GitHub](https://github.com/practical-recommender-systems/moviegeek), 
-   click the green “Clone or download” button and choose to download a zip file to your computer.
-   
-* *Using Git*
-
-   Clone this repository or create a fork in your GitHub, and then clone that instead. The following command 
-   will create a copy on your computer.
-   `> git clone https://github.com/kimfalk/live-project.git`
 
 ## Create a virtual environment for the project
 
