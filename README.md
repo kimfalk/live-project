@@ -1,10 +1,10 @@
 # The MovieGEEK Installation Guide
 
-The MovieGEEK is a website originally implemented to accompany my book, Practical Recommender Systems. 
-However this folder is used for the manning LiveProject, which is currently in MEAP. 
+The MovieGEEK is a website initially implemented to accompany my book, Practical Recommender Systems. 
+However, this folder is used for the manning LiveProject, which is currently in MEAP. 
  
-The website is not intended as a standalone tutorial or a plug-and-play website for you to install 
-and use for your own content. 
+The website is not intended as a standalone tutorial or a plug-and-play website for you to install and 
+use for your content. 
 
 ## Thanks!
 This site would not be working if it wasn’t for the [MovieTweetings](https://github.com/sidooms/MovieTweetings) 
@@ -12,16 +12,9 @@ dataset and the poster images provided by the [themoviedb.org](https://www.themo
 I wish to extend a big thanks to both of them for all their work.
 
 ## Project Setup
-In the following we will go through the steps to set up this site. 
+In the following, we will go through the steps to set up this site. 
 
-Which of the two to choose I will leave up to you. But first you need to download the 
-source code and create a themoviedb.org ID to use have pictures on the website. 
-This will be described in the following sections. 
-
-You will have two options, 
- * [use Docker container](#run-site-in-a-docker-container) 
- * [run it in a local virtual environment](#run-site-in-a-virtualenv). 
-
+The first thing is to download this repository. Secondly, create a themoviedb.org ID needed to run the website. 
 
 ### Download source code
 You have two choices for downloading the source code – downloading a zip file of the source code or using Git. 
@@ -55,10 +48,11 @@ Remember to remove the "<" and ">" When you are finished, the file contents shou
 
 ## Running the site 
 
-There are two options as to how you run the site, 
+There are two ways to run the site:
  * [use Docker container](#run-site-in-a-docker-container) 
  * [run it in a local virtual environment](#run-site-in-a-virtualenv). 
 
+I recommend the first option, as the docker container way is faster and requires less setup. 
 
 ### Run site in a Docker container 
 
