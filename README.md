@@ -23,7 +23,7 @@ You will have two options,
  * [run it in a local virtual environment](#run-site-in-a-virtualenv). 
 
 
-## Download source code
+### Download source code
 You have two choices for downloading the source code – downloading a zip file of the source code or using Git. 
 
 * *Downloading a zip file*
