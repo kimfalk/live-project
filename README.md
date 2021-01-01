@@ -87,7 +87,7 @@ You have two choices for downloading the source code – downloading a zip file 
 
    Clone this repository or create a fork in your GitHub, and then clone that instead. The following command 
    will create a copy on your computer.
-   `> git clone https://github.com/practical-recommender-systems/moviegeek.git`
+   `> git clone https://github.com/kimfalk/live-project.git`
 
 ## Create a virtual environment for the project
 
