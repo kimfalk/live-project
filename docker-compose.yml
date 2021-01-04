@@ -12,7 +12,10 @@ services:
   web:
     restart: always
     build: .
-    command: python manage.py runserver 0.0.0.0:8010
+    command: >
+      bash -c "python manage.py makemigrations --noinput &&
+               python manage.py migrate --run-syncdb &&
+               python manage.py runserver 0.0.0.0:8010"
     volumes:
       - .:/code
     ports:
