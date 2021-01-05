@@ -15,6 +15,8 @@ services:
     command: >
       bash -c "python manage.py makemigrations --noinput &&
                python manage.py migrate --run-syncdb &&
+               python populate_moviegeek.py &&
+               python populate_ratings.py &&
                python manage.py runserver 0.0.0.0:8010"
     volumes:
       - .:/code
