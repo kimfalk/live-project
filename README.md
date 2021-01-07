@@ -56,16 +56,20 @@ I recommend the first option, as the docker container way is faster and requires
 
 ### Run site in a Docker container 
 
-As a new addition to this site, this repo will also have a docker container, which should make it 
-easier to start. 
+As a new addition to this site, this repo will also have a docker container, which should make it easier to start. 
 
-Fire up the website simply by first building the docker container
+0. Populate movie and rating data to the database first.
+```shell script
+docker-compose run seed
+```
+
+1. Fire up the website simply by first building the docker container
 
 ```shell script
 docker-compose build web
 ```
 
-And then start it executing the following:
+2. And then start it executing the following:
 
 ```shell script
 docker-compose up web

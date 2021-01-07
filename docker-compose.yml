@@ -9,6 +9,9 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=pw1234
       - POSTGRES_DB=moviegeeks
+    volumes:
+      - recs-db
+
   web:
     restart: always
     build: .
@@ -36,3 +39,18 @@ services:
     command: jupyter notebook
     ports:
       - "8888:8888"
+
+  seed:
+    build: .
+    command: >
+      bash -c "python manage.py makemigrations --noinput &&
+               python manage.py migrate --run-syncdb &&
+               python populate_moviegeek.py &&
+               python populate_ratings.py"
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+
+volumes:
+  recs-db:
