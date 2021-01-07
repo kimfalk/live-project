@@ -10,7 +10,7 @@ services:
       - POSTGRES_PASSWORD=pw1234
       - POSTGRES_DB=moviegeeks
     volumes:
-      - recs-db
+      - recs-db:/var/lib/postgresql/data 
 
   web:
     restart: always
