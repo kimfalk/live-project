@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-        {% load staticfiles %}
+    {% load static %}
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,6 +30,7 @@
     <script src="/static/js/ldavis.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/bmabey/pyLDAvis/files/ldavis.v1.0.0.css">
 </head>
+
 <body>
     <div class="container">
 
@@ -46,10 +48,11 @@
         </div>
         <div class="row">
             {% for topic in topics %}
-                <h1>{{ topic.0 }} </h1>
-                {{ topic.1 }}
+            <h1>{{ topic.0 }} </h1>
+            {{ topic.1 }}
             {% endfor %}
         </div>
     </div>
 </body>
+
 </html>
