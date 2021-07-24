@@ -64,6 +64,10 @@ Fire up the website simply by first building the docker container
 ```shell script
 docker-compose build web
 ```
+Create the database and download and import data: (This takes some time)
+```shell script
+./db-migrate.sh
+```
 
 And then start it executing the following:
 
@@ -111,13 +115,13 @@ commands (Anaconda users, please use the Anaconda-specific commands):
 
 *   *Non-Anaconda users*:
     ```bash
-    > cd moviegeek
+    > cd live-project
     > virtualenv -p python3 prs
     > source prs/bin/activate
     ```
 *   *Anaconda users*:
     ```bash
-    > cd moviegeek
+    > cd live-project
     > conda create -n prs python=3.6
     > conda activate prs
     ```

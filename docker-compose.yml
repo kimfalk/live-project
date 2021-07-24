@@ -19,6 +19,8 @@ services:
       - "8010:8010"
     depends_on:
       - db
+    links: 
+      - db:db
 
   build-recs:
     build: .

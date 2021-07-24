@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    {% load staticfiles %}
+
+<head>
+    {% load static %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,14 +30,14 @@
         }
     </script>
 
-      {% block head %}{% endblock head %}
+    {% block head %}{% endblock head %}
 </head>
+
 <body>
     <div class="container">
         <nav class="navbar navbar-inverse no-padding">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle"
-                        data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                 </button>
@@ -49,10 +50,12 @@
 
                 <form class="navbar-form" action="/movies/search/">
                     <div class="form-group" style="display:inline;">
-                        <input type="text" class="form-control" placeholder="Search" name="q" style="bg-color='gray'" maxlength="40">
-                        <button class="input-group-addon" style="width: 40px"><i class="glyphicon glyphicon-search" title="Search"></i></button>
+                        <input type="text" class="form-control" placeholder="Search" name="q" style="bg-color='gray'"
+                            maxlength="40">
+                        <button class="input-group-addon" style="width: 40px"><i class="glyphicon glyphicon-search"
+                                title="Search"></i></button>
                     </div>
-                  </form>
+                </form>
             </div>
         </nav>
         <!-- end of top -->
@@ -60,19 +63,18 @@
         <div class="row">
             <div class="col-sm-2 sidebar collapse navbar-collapse">
                 <div class="well">
-                    <strong>Genres</strong><br/>
+                    <strong>Genres</strong><br />
                     <ul class="nav nav-sidebar">
-                    {% if genres %}
-                    {% for genre in genres %}
-                        <li> <a href="/movies/genre/{{genre.name}}"
-                                onclick="add_impression({{ user_id }}, 'genre:{{genre.name}}', 0
+                        {% if genres %}
+                        {% for genre in genres %}
+                        <li> <a href="/movies/genre/{{genre.name}}" onclick="add_impression({{ user_id }}, 'genre:{{genre.name}}', 0
                                         , '{{ session_id }}',
                                         '{{ csrf_token }}')">{{ genre.name }}</a> </li>
-                    {% endfor %}
-                    {% endif %}
+                        {% endfor %}
+                        {% endif %}
                     </ul>
                 </div>
-              </div>
+            </div>
             {% block content %}{% endblock content %}
 
         </div>
@@ -81,4 +83,5 @@
 
     </script>
 </body>
+
 </html>

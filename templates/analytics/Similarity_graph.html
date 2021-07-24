@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
-        {% load staticfiles %}
+{% load static %}
+
 <head>
   <title>item similarity</title>
 
@@ -15,57 +16,59 @@
     }
   </style>
 </head>
+
 <body>
 
-<p>
-  A graph representing the item-item similarity graph of the
-</p>
+  <p>
+    A graph representing the item-item similarity graph of the
+  </p>
 
-<div id="mynetwork"></div>
+  <div id="mynetwork"></div>
 
-<script type="text/javascript">
-  var options = {
-  layout: {
-    randomSeed: undefined,
-    improvedLayout:false,
-    hierarchical: {
-        enabled:false,
-        levelSeparation: 150,
-        nodeSpacing: 100,
-        treeSpacing: 200,
-        blockShifting: true,
-        edgeMinimization: true,
-        parentCentralization: true,
-        direction: 'UD',        // UD, DU, LR, RL
-        sortMethod: 'hubsize'   // hubsize, directed
+  <script type="text/javascript">
+    var options = {
+      layout: {
+        randomSeed: undefined,
+        improvedLayout: false,
+        hierarchical: {
+          enabled: false,
+          levelSeparation: 150,
+          nodeSpacing: 100,
+          treeSpacing: 200,
+          blockShifting: true,
+          edgeMinimization: true,
+          parentCentralization: true,
+          direction: 'UD',        // UD, DU, LR, RL
+          sortMethod: 'hubsize'   // hubsize, directed
+        }
       }
     }
-  }
 
-  // create an array with nodes
-  var nodes = new vis.DataSet([
-  {% for node in nodes %}
-        {'id': {{ node.id }}, 'label': "{{ node.label }}" },
-  {% endfor %}
+    // create an array with nodes
+    var nodes = new vis.DataSet([
+      {% for node in nodes %}
+    { 'id': { { node.id } }, 'label': "{{ node.label }}" },
+    {% endfor %}
   ]);
 
-  // create an array with edges
-  var edges = new vis.DataSet([
-  {% for edge in edges %}
-    {'from': {{ edge.from }}, 'to': {{ edge.to }} },
+    // create an array with edges
+    var edges = new vis.DataSet([
+      {% for edge in edges %}
+    { 'from': { { edge.from } }, 'to': { { edge.to } } },
 
-  {% endfor %}
+    {% endfor %}
   ]);
 
-  // create a network
-  var container = document.getElementById('mynetwork');
+    // create a network
+    var container = document.getElementById('mynetwork');
 
-  var data = {
-    nodes: nodes,
-    edges: edges
-  };
-  var network = new vis.Network(container, data, options);
-</script>
+    var data = {
+      nodes: nodes,
+      edges: edges
+    };
+    var network = new vis.Network(container, data, options);
+  </script>
 
 </body>
+
 </html>
