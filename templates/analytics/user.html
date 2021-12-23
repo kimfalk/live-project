@@ -355,7 +355,7 @@
             var svg = dimple.newSvg("#chartContainer", 700, 400);
             var data = [
               {% for i in genres %}
-            { "name": '{{i.0}}', "type": '{{i.1}}', "value": { { i.2 } } },
+            { "name": '{{i.0}}', "type": '{{i.1}}', "value": '{{ i.2 }}' },
             {% endfor %}
       ];
             var chart = new dimple.chart(svg, data);
